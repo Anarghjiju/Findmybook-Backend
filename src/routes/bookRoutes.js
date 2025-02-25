@@ -40,4 +40,9 @@ router.post(
   })
 );
 
+
+router.get('/wake', (req, res) => {
+    res.json({ message: 'Successfully woken up' });
+  });
+
 module.exports = router;
