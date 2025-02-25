@@ -18,4 +18,8 @@ router.post('/book', async (req, res) => {
   }
 });
 
+router.get('/wake', (req, res) => {
+    res.json({ message: 'Successfully woken up' });
+  });
+
 module.exports = router;
