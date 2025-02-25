@@ -1,21 +1,43 @@
 const express = require('express');
-const router = express.Router();
+const { body, validationResult } = require('express-validator');
 const { getBookDetails } = require('../controller/bookController');
+const asyncHandler = require('../middleware/asyncHandler');
 
-// Route to get book details
-router.post('/book', async (req, res) => {
-  const { bookName } = req.body;
+const router = express.Router();
 
-  if (!bookName) {
-    return res.status(400).json({ error: 'Book name is required' });
-  }
+/**
+ * @route   POST /api/v1/book
+ * @desc    Get book details by name
+ * @access  Public
+ */
+router.post(
+  '/book',
+  [
+    body('bookName')
+      .trim()
+      .notEmpty()
+      .withMessage('Book name is required')
+      .isString()
+      .withMessage('Book name must be a string')
+      .isLength({ min: 2 })
+      .withMessage('Book name must be at least 2 characters'),
+  ],
+  asyncHandler(async (req, res) => {
 
-  try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { bookName } = req.body;
     const bookDetails = await getBookDetails(bookName);
-    res.json(bookDetails);
-  } catch (error) {
-    res.status(500).json({ error: 'Something went wrong' });
-  }
-});
+
+    res.status(200).json({
+      success: true,
+      data: bookDetails,
+    });
+  })
+);
 
 module.exports = router;
