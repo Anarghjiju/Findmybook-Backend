@@ -41,8 +41,14 @@ router.post(
 );
 
 
+/**
+ * @route   POST /api/v1/wake
+ * @desc    To wake up instance
+ * @access  Public
+ */
 router.get('/wake', (req, res) => {
     res.json({ message: 'Successfully woken up' });
-  });
+});
+
 
 module.exports = router;
