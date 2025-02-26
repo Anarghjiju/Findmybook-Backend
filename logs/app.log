@@ -1,2 +1,5 @@
 {"level":"info","message":"Server running on port 3000","timestamp":"2025-02-25T14:45:52.302Z"}
 {"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2025-02-25T14:45:56.378Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-02-26T14:19:17.117Z"}
+{"level":"info","message":"::1 - - [26/Feb/2025:14:19:36 +0000] \"POST /api/v1/book HTTP/1.1\" 200 - \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-26T14:19:36.813Z"}
+{"level":"info","message":"SIGINT received. Shutting down...","timestamp":"2025-02-26T14:22:36.002Z"}
